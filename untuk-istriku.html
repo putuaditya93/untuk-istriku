@@ -1,0 +1,372 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+<title>Untuk Kamu ❤️</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, sans-serif;
+
+    background:
+        radial-gradient(circle at top, #ffb6c9, transparent 40%),
+        linear-gradient(160deg, #ff758c, #ff7eb3, #756cff);
+
+    color: white;
+}
+
+/* Tampilan seperti layar HP */
+
+.phone {
+    width: 100%;
+    height: 100vh;
+
+    max-width: 430px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+}
+
+/* Kotak cerita */
+
+.box {
+    width: 100%;
+
+    padding: 35px 22px;
+
+    text-align: center;
+
+    background: rgba(255,255,255,0.16);
+
+    border: 1px solid rgba(255,255,255,0.3);
+
+    border-radius: 28px;
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.25);
+}
+
+/* Judul */
+
+.title {
+    font-size: 27px;
+    font-weight: bold;
+
+    margin-bottom: 25px;
+}
+
+/* Cerita */
+
+#story {
+    min-height: 180px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 20px;
+
+    line-height: 1.7;
+}
+
+/* Tombol */
+
+button {
+    width: 85%;
+
+    padding: 16px 20px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background: white;
+
+    color: #ff4f81;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 20px rgba(0,0,0,.2);
+}
+
+button:active {
+    transform: scale(.95);
+}
+
+/* Kejutan */
+
+#surprise {
+    display: none;
+}
+
+.sableng {
+    font-size: 60px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    animation:
+        goyang .35s infinite alternate;
+
+    text-shadow:
+        0 0 10px white,
+        0 0 25px #ff4f81,
+        0 0 45px #ff4f81;
+}
+
+.small {
+    margin-top: 20px;
+
+    font-size: 19px;
+
+    line-height: 1.6;
+}
+
+/* Hati */
+
+.heart {
+    position: fixed;
+
+    bottom: -40px;
+
+    pointer-events: none;
+
+    animation: terbang linear forwards;
+}
+
+@keyframes terbang {
+
+    0% {
+        transform:
+            translateY(0)
+            scale(.5);
+
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            scale(1.3)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+@keyframes goyang {
+
+    from {
+        transform:
+            rotate(-5deg)
+            scale(1);
+    }
+
+    to {
+        transform:
+            rotate(5deg)
+            scale(1.08);
+    }
+}
+
+/* HP sangat kecil */
+
+@media (max-height: 650px) {
+
+    .box {
+        padding: 25px 18px;
+    }
+
+    #story {
+        min-height: 140px;
+        font-size: 18px;
+    }
+
+    .sableng {
+        font-size: 50px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="phone">
+
+    <div class="box">
+
+        <div class="title">
+            💌 Untuk Istriku ❤️
+        </div>
+
+        <div id="story">
+            Ada sebuah cerita...
+            <br>
+            tentang kamu dan aku. ❤️
+        </div>
+
+        <button onclick="nextStory()">
+            Lanjut ❤️
+        </button>
+
+        <div id="surprise">
+
+            <div class="sableng">
+                SABLENG 😂❤️
+            </div>
+
+            <div class="small">
+
+                Hahaha... jangan marah 😆
+
+                <br><br>
+
+                Walaupun kamu sableng,
+                <br>
+                kamu tetap orang yang
+                paling aku sayang. ❤️
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let cerita = [
+
+    "Aku pernah berpikir... ❤️",
+
+    "Dari sekian banyak orang di dunia ini...",
+
+    "Kenapa akhirnya aku bisa bertemu dengan kamu? 🥰",
+
+    "Mungkin jawabannya sederhana...",
+
+    "Karena kamu membuat hidupku menjadi lebih berwarna. ❤️",
+
+    "Dan ada satu hal terakhir yang ingin aku katakan...",
+
+];
+
+let nomor = 0;
+
+
+function nextStory() {
+
+    if (nomor < cerita.length) {
+
+        document.getElementById("story").innerHTML =
+            cerita[nomor];
+
+        nomor++;
+
+    }
+
+    else {
+
+        document.getElementById("story").style.display =
+            "none";
+
+        document.querySelector("button").style.display =
+            "none";
+
+        document.getElementById("surprise").style.display =
+            "block";
+
+        ledakanHati();
+
+    }
+
+}
+
+
+/* Ledakan hati ❤️ */
+
+function ledakanHati() {
+
+    for (let i = 0; i < 60; i++) {
+
+        setTimeout(function() {
+
+            const hati =
+                document.createElement("div");
+
+            hati.className = "heart";
+
+            hati.innerHTML =
+                Math.random() > .3
+                ? "❤️"
+                : "💕";
+
+            hati.style.left =
+                Math.random() * 100 + "vw";
+
+            hati.style.fontSize =
+                (15 + Math.random() * 35) + "px";
+
+            hati.style.animationDuration =
+                (3 + Math.random() * 4) + "s";
+
+            document.body.appendChild(hati);
+
+            setTimeout(function() {
+
+                hati.remove();
+
+            }, 7000);
+
+        }, i * 60);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
+```
